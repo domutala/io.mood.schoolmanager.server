@@ -20,7 +20,7 @@ export class School extends BaseEntity {
   @Column({ nullable: true })
   name!: string;
 
-  /** pointe vers un file id_file */
+  /** pointe vers un file id_file  */
   @Column({ type: "text", nullable: true })
   logo?: string;
 
