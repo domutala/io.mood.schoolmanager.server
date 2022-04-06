@@ -24,6 +24,39 @@ export class School extends BaseEntity {
   @Column({ type: "text", nullable: true })
   logo?: string;
 
+  @Column({ type: "text", nullable: true })
+  abbreviation?: string;
+
+  @Column({ type: "text", nullable: true })
+  devise?: string;
+
+  @Column({ type: "text", nullable: true })
+  description?: string;
+
+  @Column({ type: "date", nullable: true })
+  created_date?: Date;
+
+  @Column()
+  academic_informations!: {
+    ministere?: string;
+    ia?: string;
+    ief?: string;
+    iden?: string;
+    type?: string;
+    language: { main: string; others: string[] };
+  };
+
+  @Column()
+  contacts!: {
+    email?: string;
+    phone?: string;
+    address?: string;
+    web_site?: string;
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+  };
+
   @Column({ type: "datetime" })
   @CreateDateColumn()
   created_at!: Date;
