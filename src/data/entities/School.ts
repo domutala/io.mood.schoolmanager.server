@@ -20,7 +20,7 @@ export class School extends BaseEntity {
   @Column({ nullable: true })
   name!: string;
 
-  /** pointe vers un file id_file */
+  /** pointe vers un file id_file  */
   @Column({ type: "text", nullable: true })
   logo?: string;
 
@@ -28,7 +28,7 @@ export class School extends BaseEntity {
   abbreviation?: string;
 
   @Column({ type: "text", nullable: true })
-  devise?: string;
+  slogan?: string;
 
   @Column({ type: "text", nullable: true })
   description?: string;
@@ -43,7 +43,7 @@ export class School extends BaseEntity {
     ief?: string;
     iden?: string;
     type?: string;
-    language: { main: string; others: string[] };
+    language?: { main: string; others: string[] };
   };
 
   @Column()
@@ -56,6 +56,10 @@ export class School extends BaseEntity {
     twitter?: string;
     linkedin?: string;
   };
+
+  /** id de l'utilisateur qui a créer l'objet */
+  @Column({ type: "text" })
+  user!: string;
 
   @Column({ type: "datetime" })
   @CreateDateColumn()
