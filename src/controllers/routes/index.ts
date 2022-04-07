@@ -3,7 +3,7 @@ import * as express from "express";
 import middlewares from "../middlewares";
 import session from "./_session";
 import user from "./_user";
-import school from "./_school";
+import unit from "./_unit";
 
 export const init = async (App: express.Express) => {
   const router = express.Router();
@@ -15,7 +15,7 @@ export const init = async (App: express.Express) => {
 
   router.use("/session", session);
   router.use("/user", user);
-  router.use("/school", school);
+  router.use("/unit", unit);
 
   App.use(router);
 };

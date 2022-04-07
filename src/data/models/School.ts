@@ -4,6 +4,7 @@
  * @description
  * Ce modèle contient les informations d'un établissement scolaire
  */
+
 export interface School {
   details: {
     name: string;

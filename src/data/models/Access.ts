@@ -20,6 +20,9 @@ export interface Access {
    */
   role: "admin" | "read" | "write";
 
-  /** L'utilisateur qui posséde l'objet */
-  owner: string;
+  /** Si l'objet appartien à l'utilisateur */
+  owner: boolean;
+
+  /** Défini à true si l'accès est suspendu */
+  suspended?: boolean;
 }

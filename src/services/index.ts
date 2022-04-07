@@ -1,6 +1,6 @@
 import file from "./file";
 import session from "./session";
 import user from "./user";
-import school from "./school";
+import unit from "./unit";
 
-export default { file, session, user, school };
+export default { file, session, user, unit };

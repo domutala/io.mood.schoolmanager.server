@@ -1,5 +1,5 @@
 import session from "./session";
 import user from "./user";
-import school from "./school";
+import unit from "./unit";
 
-export default { session, user, school };
+export default { session, user, unit };

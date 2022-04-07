@@ -50,4 +50,10 @@ data: any
  * des taches précises.
 */
 access: Access[] // voire le model Access
+
+/** Si l'objet appartien à l'utilisateur */
+owner: boolean;
+
+/** Défini à true si l'accès est suspendu */
+suspended: boolean;
 ```

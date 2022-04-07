@@ -9,8 +9,7 @@ import {
 } from "typeorm";
 
 import { Access } from "../models/Access";
-import { School } from "../models/School";
-import { Year } from "../models/Year";
+import { UnitDate, UnitType } from "../models/Unit";
 
 /**
  * @author domutala
@@ -35,11 +34,11 @@ export class Unit extends BaseEntity {
 
   /** Explication plus tard dans ce document*/
   @Column({ type: "string" })
-  type!: "school" | "year" | "classroom" | "student";
+  type!: UnitType;
 
   /** C'est la valeur de l'objet */
   @Column()
-  data!: School | Year;
+  data!: UnitDate;
 
   /**
    * C'est un tableau d'accès permettant au utilisateur d'effetuer

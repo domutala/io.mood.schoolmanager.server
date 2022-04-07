@@ -11,10 +11,10 @@ import data from "../../data";
  * @version 0.2.0
  */
 export default async ({ session, body }: { session: ISession; body: any }) => {
-  const school = await data.functions.school.add({
-    user_id: session.user as string,
+  const unit = await data.functions.unit.add({
+    user: session._user,
     ...body,
   });
 
-  return school;
+  return unit;
 };

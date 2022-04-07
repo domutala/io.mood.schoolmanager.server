@@ -5,7 +5,7 @@ import services from "../../../services";
 
 export default async (req: Request, res: Response) => {
   try {
-    const response = await services.school.add({
+    const response = await services.unit.add({
       session: req.session as any,
       body: req.body,
     });

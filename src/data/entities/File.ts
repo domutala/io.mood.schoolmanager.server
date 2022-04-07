@@ -27,4 +27,8 @@ export class File extends BaseEntity {
    */
   @Column()
   user!: string;
+
+  /** id d'un objet de type `unit` */
+  @Column()
+  unit!: string;
 }
