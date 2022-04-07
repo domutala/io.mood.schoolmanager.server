@@ -12,8 +12,10 @@ import { User } from "../../entities/User";
 export default async ({ user, parent }: { user: User; parent?: string }) => {
   const where: any = {
     access: {
-      user: { $eq: user.id.toString() },
-      suspended: { $not: { $eq: true } },
+      $elemMatch: {
+        user: user.id.toString(),
+        suspended: { $ne: true },
+      },
     },
   };
 

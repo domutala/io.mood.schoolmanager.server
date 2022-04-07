@@ -2,9 +2,8 @@ import { ISession } from "../../../types/express-extend";
 import data from "../../data";
 
 /**
- * Cette fonction permet d'ajouter un objet de type School dans
- * la base de données. Après la création de l'objet les acces à cette
- * objet doivent etre créer.
+ * Cette fonction permet d'ajouter un objet de type Unit dans
+ * la base de données.
  *
  * @author domutala
  * @description Ajouter un objet School
