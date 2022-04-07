@@ -19,21 +19,26 @@ export class Access extends BaseEntity {
   @ObjectIdColumn()
   id!: ObjectID;
 
-  /** C'est l'identifiant de l'utilisateur */
+  /** C'est l'identifiant de l'objet user */
   @Column({ nullable: true })
   user!: string;
 
-  /** C'est l'identifiant de l'élément auquel l'utilisateur a accès */
   @Column({ nullable: true })
-  element!: { id: string };
+  object!: {
+    /** C'est l'identifiant de l'objet */ id: string;
+    /** C'est le type objet: school, classroom, year, ... */ types: string;
+  };
 
   /**
-   * Chaque acces attribut un role bien défini.
-   * Par exemple s'agissant d'une classe l'utilisateur
-   * peut u accéder en tant que surveillant, professeur ou directeur.
+   * admin: donne tous les accès possible, suppression et
+   *        ajout de nouvelle accès.
+   *
+   * write: permet une modification de l'objet.
+   *
+   * read: c'est un accès en lecture simple.
    */
-  @Column({ type: "text", nullable: true })
-  role?: string;
+  @Column({ type: "text" })
+  role!: "admin" | "read" | "write";
 
   @Column({ type: "datetime" })
   @CreateDateColumn()
