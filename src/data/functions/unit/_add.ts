@@ -2,10 +2,12 @@ import { getRepository } from "typeorm";
 import { ObjectID } from "mongodb";
 
 import { Unit } from "../../entities/Unit";
-import { Access } from "../../models/Access";
 import { User } from "../../entities/User";
+
 import { isUnitType, UnitDate, UnitType } from "../../models/Unit";
-import functions from "..";
+import { Access } from "../../models/Access";
+import { build as school_build } from "../../models/School";
+
 import utils from "../../../utils";
 
 /**
@@ -40,13 +42,16 @@ export default async ({
     parent = undefined;
 
     // vérifier les données
-    await functions.unit.utils.school.verify_data(data as any);
+    data = await school_build({ name: data.name }, data);
 
-    if (!(data as any).name || !utils.regex.name((data as any).name)) {
+    if (
+      !(data as any).details ||
+      !(data as any).details.name ||
+      !utils.regex.name((data as any).details.name)
+    ) {
       const error = Error();
       error.name = "invalidData";
-      error.message =
-        "Le nom de l'objet de School(Etablissement Scolaire) n'est pas valide";
+      error.message = "Le nom de l'objet de School n'est pas valide";
       throw error;
     }
 
@@ -77,7 +82,7 @@ export default async ({
     if (!unit_parent) {
       // renvoyer une erreur
       const error = new Error();
-      error.name = "notFoundUnit";
+      error.name = "notUnitFound";
       error.message = "L'objet parent n'existe pas.";
       throw error;
     }

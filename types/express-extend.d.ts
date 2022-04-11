@@ -10,6 +10,11 @@ declare global {
     interface Request {
       session?: ISession;
       public_key: string;
+      jwt?: {
+        session_id: string;
+        read?: string;
+        write?: { user: string; unit?: string; type: string };
+      };
     }
   }
 }

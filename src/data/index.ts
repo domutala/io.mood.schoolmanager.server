@@ -1,6 +1,8 @@
 import { Connection, createConnection } from "typeorm";
 import * as config from "./config";
+
 import functions from "./functions";
+
 /**
  * @author domutala
  * @description Cette fonction initialise la base données.

@@ -11,13 +11,19 @@ import data from "../../data";
 export default async ({
   session,
   parent,
+  id,
+  types,
 }: {
   session: ISession;
+  id?: string;
   parent?: string;
+  types?: string[];
 }) => {
   const unit = await data.functions.unit.find({
     user: session._user as any,
+    id,
     parent,
+    types,
   });
 
   return unit;

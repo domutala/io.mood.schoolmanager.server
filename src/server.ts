@@ -4,6 +4,7 @@ import * as cors from "cors";
 import * as bodyParser from "body-parser";
 import * as os from "os";
 import * as fileUpload from "express-fileupload";
+import * as socket from "./socket";
 
 export const init = async () => {
   // démarer le server
@@ -16,6 +17,9 @@ export const init = async () => {
   app.use(fileUpload());
 
   const server = http.createServer(app);
+
+  // socket
+  socket.init(server);
 
   // listen
   const port = process.env.PORT || 6080;

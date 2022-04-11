@@ -1,14 +1,17 @@
 (async () => {
   try {
-    const fruit = ["apple", "banana", "grape"] as const;
-    type Fruit = typeof fruit[number];
-    const isFruit = (x: any): x is Fruit => fruit.includes(x);
+    const ob: { [key: string]: any } = {
+      a: {
+        b: {
+          c: 0,
+        },
+      },
+    };
+    const keys = "a.b.c";
+    console.log(ob[keys]);
 
-    const myfruit = "pear";
-    console.log(isFruit(myfruit));
-
-    if (isFruit(myfruit)) {
-      console.log("My fruit is of type 'Fruit'");
+    for (const key of keys.split(".")) {
+      console.log(key);
     }
   } catch (error) {
     console.log((error as Error).name);

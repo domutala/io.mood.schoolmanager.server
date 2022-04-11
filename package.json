@@ -18,6 +18,7 @@
     "@types/crypto-js": "^4.0.2",
     "@types/express": "^4.17.13",
     "@types/express-fileupload": "^1.1.7",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node-rsa": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
@@ -28,10 +29,12 @@
     "exceljs": "^4.3.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
+    "express-jwt": "^6.1.1",
     "firebase": "^9.6.9",
     "firebase-admin": "^10.0.2",
     "fs": "^0.0.1-security",
     "geolib": "^3.3.3",
+    "jsonwebtoken": "^8.5.1",
     "libphonenumber-js": "^1.9.50",
     "moment": "^2.29.1",
     "mongodb": "^3.0.15",
@@ -48,7 +51,8 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "run:dev": "nodemon --watch src/* --exec ts-node src/index.ts",
+    "run:dev": "nodemon",
+    "run:dev0": "nodemon --watch src/* --exec ts-node src/index.ts",
     "run:test": "ts-node test/index.ts"
   }
 }

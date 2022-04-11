@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import utils from "../../utils";
 
-export type IResponse = { value?: any; error?: { text: string } };
+export type IResponse = {
+  value?: any;
+  error?: { text: string };
+  stream?: boolean;
+};
 
 export const token_encrypter = (req: Request, res: Response) => {
   delete req.headers.session_id;
@@ -15,16 +19,19 @@ export const token_encrypter = (req: Request, res: Response) => {
   return { req, res };
 };
 
-export const data_encrypter = (req: Request, data: any) => {
-  let publickey = req.public_key as string;
+export const data_encrypter = (publickey: string, data: any) => {
+  // const publickey = req.public_key as string;
   let encrypt_data: any;
 
   if (data && publickey) {
-    publickey = publickey.replace(/--n--/gm, "\n");
     encrypt_data = utils.rsa.encrypter({
       key: publickey,
       data: JSON.stringify(data),
     });
+
+    if (Array.isArray(encrypt_data)) {
+      encrypt_data = encrypt_data.join(";;");
+    }
   }
 
   return encrypt_data;
@@ -36,12 +43,16 @@ export const jsoniffer = async (
   data: any,
   status = 200
 ) => {
-  data = data_encrypter(_req, data);
+  const dup = token_encrypter(_req, _res);
+  _req = dup.req;
+  _res = dup.res;
+
+  data = data_encrypter(_req.public_key, data);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { req, res } = token_encrypter(_req, _res);
+  // const { req, res } = token_encrypter(_req, _res);
 
-  res.status(status).json(data);
+  _res.status(status).json(data);
 };
 
 export const error = async (_req: Request, _res: Response, error: any) => {

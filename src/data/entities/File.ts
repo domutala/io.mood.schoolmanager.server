@@ -17,7 +17,7 @@ export class File extends BaseEntity {
   type!: string;
 
   @Column()
-  value?: string;
+  value!: string;
 
   @Column()
   path!: string;

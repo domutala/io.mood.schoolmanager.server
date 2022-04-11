@@ -5,14 +5,15 @@ import services from "../../../services";
 
 export default async (req: Request, res: Response) => {
   try {
-    const response = await services.unit.get({
+    if (!req.files || !req.files.files) return sender(req, res, { value: [] });
+
+    const files_id = await services.file.add({
       session: req.session as any,
-      parent: req.query.parent as string,
-      id: req.query.id as string,
-      types: req.query.types as string[],
+      files: req.files.files,
+      unit: req.query.unit as string,
     });
 
-    sender(req, res, { value: response });
+    sender(req, res, { value: files_id });
   } catch (error: any) {
     sender(req, res, { error });
   }
